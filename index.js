@@ -12,6 +12,15 @@ const userRouter = require("./Router/user.router");
 const commentRouter = require("./Router/comment.router");
 const cryptoRouter = require("./Router/crypto.router");
 
+// require("./models/UserModel");
+// require("./models/PostCryptoModel");
+// require("./models/CommentsModel");
+// const { body } = require("express-validator");
+// const UserModel = require("./models/UserModel");
+// const { Collection } = require("mongoose");
+// const CommentsModel = require("./models/CommentsModel");
+// const CrytpoModel = require("./models/PostCryptoModel");
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());

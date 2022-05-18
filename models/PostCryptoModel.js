@@ -1,12 +1,19 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
 
-const postCryptSchema = mongoose.Schema({
-  // OwnerID: user._id,
-  text: String,
-  likes: [Number],
-  nameCryptoApi: String,
-  time: Date,
-});
+const postCryptSchema = mongoose.Schema(
+  {
+    // OwnerID: user._id,
+    text: String,
+    likes: [Number],
+    nameCryptoApi: String,
+    time: Date,
+  },
+  {
+    timestamps: true,
+  }
+);
 
-module.exports = router;
+const PostCryptModel = mongoose.model("postCrypt", postCryptSchema);
+
+module.exports = PostCryptModel;

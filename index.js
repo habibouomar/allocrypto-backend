@@ -1,7 +1,7 @@
 require("dotenv").config({ path: "./config/.env" });
 require("./config/db.config");
 require("./models/UserModel");
-require("./models/PostModel");
+const user = require("./router/user.router");
 require("./models/PostCryptoModel");
 require("./models/CommentsModel");
 const cors = require("cors");
@@ -14,6 +14,8 @@ app.use(cors());
 app.use(express.static("public"));
 
 const PORT = 3002 || process.env.PORT;
+
+app.use("/", user);
 
 app.get("/", (req, res) => {
   res.send("WELCOME TO THE GOULAG");

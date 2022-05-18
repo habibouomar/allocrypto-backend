@@ -1,12 +1,19 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
 
-const postSchema = new mongoose.Schema({
-  createdAt: Date,
-  // OwnerID: user._id,
-  likes: [Number],
-  comments: [Number],
-  text: String,
-});
+const postSchema = new mongoose.Schema(
+  {
+    createdAt: Date,
+    // OwnerID: user._id,
+    likes: [Number],
+    comments: [Number],
+    text: String,
+  },
+  {
+    timestamps: true,
+  }
+);
 
-module.exports = router;
+const PostModel = mongoose.model("post", postSchema);
+
+module.exports = PostModel;

@@ -7,6 +7,10 @@ const postSchema = new mongoose.Schema({
   likes: [Number],
   comments: [Number],
   text: String,
-});
+  },{
+    timestamps:true
+  });
 
-module.exports = router;
+  const PostModel = mongoose.model('Post', postSchema)
+
+module.exports = PostModel;

@@ -7,6 +7,11 @@ const postCryptSchema = mongoose.Schema({
   likes: [Number],
   nameCryptoApi: String,
   time: Date,
-});
+},
+{
+  timestamp:true
+}
+);
+const CrytpoModel = mongoose.model('Crytpo',postCryptSchema);
 
-module.exports = router;
+module.exports = CrytpoModel;

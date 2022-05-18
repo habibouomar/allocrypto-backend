@@ -3,8 +3,16 @@ const mongoose = require("mongoose");
 
 const commentSchema = new mongoose.Schema(
   {
-    // OwnerID: user._id,
-    // PostID: post._id,
+    ownerID: {
+      type: mongoose.Types.ObjectId,
+      ref: "user",
+    },
+
+    postID: {
+      type: mongoose.Types.ObjectId,
+      ref: "post",
+    },
+
     text: String,
   },
   { timestamps: true }

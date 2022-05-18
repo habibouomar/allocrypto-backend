@@ -1,24 +1,35 @@
-require("dotenv").config({ path: "./config/.env" });
+// import db.config
 require("./config/db.config");
-require("./models/UserModel");
-const user = require("./router/user.router");
-require("./models/PostCryptoModel");
-require("./models/CommentsModel");
-const cors = require("cors");
+// config dotenv
+require("dotenv").config({ path: "./config/.env" });
+// use cors and express
 const express = require("express");
 const app = express();
+const cors = require("cors");
+// import router
+const postRouter = require("./Router/post.router");
+const userRouter = require("./Router/user.router");
+const commentRouter = require("./Router/comment.router");
+const cryptoRouter = require("./Router/crypto.router");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.static("public"));
 
-const PORT = 3002 || process.env.PORT;
+//routes
+app.use("/post", postRouter);
+app.use("/user", userRouter);
+app.use("/comment", commentRouter);
+app.use("/crypto", cryptoRouter);
 
-app.use("/", user);
+const PORT = 3002 || process.env.PORT;
 
 app.get("/", (req, res) => {
   res.send("WELCOME TO THE GOULAG");
 });
 
-app.listen(PORT, () => console.log(`server satarted in PORT ${PORT}`));
+// Post
+app.listen(PORT, () => {
+  console.log(`server satarted in PORT ${PORT}`);
+});

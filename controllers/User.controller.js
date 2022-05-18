@@ -1,37 +1,27 @@
-const { isValidObjectId } = require("mongoose");
 const UserModel = require("../models/UserModel");
-const ObjectID = require("mongoose").Types.ObjectId;
 
-module.exports.userPost = async (req, res) => {
-  const { userName, aboutMe, picture } = req.body;
-  const user = await UserModel.create({
-    userName,
-    aboutMe,
-    picture,
+(module.exports.userPost = (req, res, next) => {
+  const body = req.body;
+  UserModel.create(body).then((result) => console.log(result));
+}),
+  (module.exports.userDelete = (req, res, next) => {
+    const body = req.body;
+    UserModel.deleteOne({ picture: body.picture }).then((result) =>
+      console.log(result)
+    );
   });
-  user.save();
-};
-
-module.exports.putUser = (req, res) => {
-  // const id = req.params.id;
-  // if (!isValidObjectId(id)) {
-  //   return res.status(500).send(" ID unknow : " + id);
-  // }
-
-  const userName = req.body.userName;
-  // const userUpdate = {
-  //   userName,
-  // };
+module.exports.userPut = (req, res, next) => {
+  const body = req.body;
   UserModel.updateOne(
-    // id,
-    // { $set: body }
-    // { new: true }
-    // (err, docs) => {
-    //   if (!err) res.send(docs);
-    //   else console.log(" Update error : " + err);
-    // }
-    { userName: userName },
-    { userName: "Mastser" },
+    { userName: body.userName },
+    { userName: "Erfan91" },
     { upsert: true }
-  ).then((result) => console.log(result));
+  ).then((result) => {
+    console.log(result);
+  });
+};
+module.exports.userGet = (req, res, next) => {
+  UserModel.find({})
+    .exec()
+    .then((result) => console.log(result));
 };

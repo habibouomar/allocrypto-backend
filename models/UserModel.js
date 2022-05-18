@@ -6,10 +6,6 @@ const userSchema = new mongoose.Schema(
     userName: String,
     aboutMe: String,
     picture: String,
-    post: {
-      type: mongoose.Types.ObjectId,
-      ref: "comments",
-    },
   },
   {
     timestamps: true,

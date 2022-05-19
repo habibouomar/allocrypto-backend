@@ -4,7 +4,10 @@ const UserModel = require('../models/UserModel');
 
 module.exports.userPost = (req,res,next)=>{
     const body = req.body;
-    UserModel.create(body).then(result=>console.log(result))
+    UserModel.create(body).then(result=>{
+        res.json({id:result._id})
+        console.log(result)
+    })
 },
 
 module.exports.userDelete =  (req,res,next)=>{

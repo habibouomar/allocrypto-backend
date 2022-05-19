@@ -2,8 +2,8 @@ const router = require("express").Router();
 const mongoose = require("mongoose");
 
 const commentSchema = new mongoose.Schema({
-  // OwnerID: user._id,
-  // PostID: post._id,
+  OwnerID: String,
+  PostID: String,
   createdAt:Date,
   text: String,
 });

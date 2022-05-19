@@ -8,7 +8,8 @@ module.exports.tweetPost = (req,res,next)=>{
         comments:body.comments,
         text:body.text
     }).then(result=>{
-        console.log(result)
+        res.json({postId:result._id})
+        console.log(result._id,'JEJEJE')
     })
     console.log(PostModel)
 }
@@ -17,11 +18,16 @@ module.exports.tweetDelete = (req,res,next)=>{
 }
 
 module.exports.tweetPut = (req,res,next)=>{
-    PostModel.updateOne({likes:[761]},{likes:1212},{upsert:true})
+    const body = req.body;
+    PostModel.updateOne({_id:body.postID},{likes:body.OwnerID},{upsert:true})
     .then(result=>console.log(result))
 }
 
+
 module.exports.tweetGet = (req,res,next)=>{
     PostModel.find({}).exec()
-    .then(result=>console.log(result))
+    .then(result=>{
+        console.log(result)
+        res.json({result})
+    })
 }

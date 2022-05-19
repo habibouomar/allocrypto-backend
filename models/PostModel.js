@@ -3,11 +3,12 @@ const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema({
   createdAt: Date,
-  // OwnerID: user._id,
-  likes: [Number],
-  comments: [Number],
+  OwnerID: String,
+  likes: [String],
   text: String,
-  },{
+  postID:String
+  },
+  {
     timestamps:true
   });
 

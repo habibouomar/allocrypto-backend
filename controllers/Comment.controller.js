@@ -2,10 +2,7 @@ const CommentsModel = require('../models/CommentsModel');
 
 module.exports.commentPost = (req,res,next)=>{
     const body = req.body;
-    CommentsModel.create({
-        createdAt:body.createdAt,
-        text:body.text
-    }).then(result=>console.log(result))
+    CommentsModel.create(body).then(result=>console.log(result))
 }
 
 module.exports.commentDelete = (req,res,next)=>{

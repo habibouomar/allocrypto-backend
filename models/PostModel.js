@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
 
+
 const postSchema = new mongoose.Schema({
   createdAt: Date,
   OwnerID: String,
@@ -12,6 +13,6 @@ const postSchema = new mongoose.Schema({
     timestamps:true
   });
 
-  const PostModel = mongoose.model('Post', postSchema)
+const PostModel = mongoose.model("post", postSchema);
 
 module.exports = PostModel;

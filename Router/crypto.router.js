@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const cryptoController = require('../controllers/PostCrypto.controller');
-router.post('/crypto',cryptoController.cryptoPost)
-router.get('/crypto',cryptoController.cryptoGet)
-router.put('/crypto',cryptoController.ceryptoPut)
-router.delete('/crypto',cryptoController.cryptoDelete);
+router.post("/", cryptoController.cryptoPost);
+router.get("/", cryptoController.cryptoGet);
+router.put("/", cryptoController.ceryptoPut);
+router.delete("/", cryptoController.cryptoDelete);
 
 module.exports = router;

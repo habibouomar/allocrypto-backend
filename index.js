@@ -9,9 +9,9 @@ const userRouter = require("./Router/user.router");
 const commentRouter = require("./Router/comment.router");
 const cryptoRouter = require("./Router/crypto.router");
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
 app.use(express.static("public"));
 
 

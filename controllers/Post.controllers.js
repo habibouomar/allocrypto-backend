@@ -25,7 +25,7 @@ module.exports.tweetPut = (req,res,next)=>{
 
 
 module.exports.tweetGet = (req,res,next)=>{
-    PostModel.find({}).exec()
+    PostModel.find({}).sort({createdAt:-1}).exec()
     .then(result=>{
         console.log(result)
         res.json({result})

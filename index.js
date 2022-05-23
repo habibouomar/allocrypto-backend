@@ -28,10 +28,10 @@ app.get("/", (req, res) => {
   res.send("WELCOME TO THE GOULAG");
 });
 
-app.post("/comment/get", (req,res,next)=>{
-  const body = req.body;
+app.get("/comment/:id", (req,res,next)=>{
+  const body = req.params;
   // console.log(body)
-  CommentsModel.find({postID:body.postID})
+  CommentsModel.find({postID:body.id})
   .populate('ownerID')
   .exec()
   .then(result=>{

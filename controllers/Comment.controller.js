@@ -22,5 +22,5 @@ module.exports.commentPut = (req,res,nexxt)=>{
 
 module.exports.commentGet = (req,res,next)=>{
     CommentsModel.find({}).exec()
-    .then(result=>console.log(result))
+    .then(result=>res.json(result))
 }

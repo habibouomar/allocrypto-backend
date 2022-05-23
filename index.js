@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
   res.send("WELCOME TO THE GOULAG");
 });
 
-// Post
+
 app.listen(PORT, () => {
   console.log(`server satarted in PORT ${PORT}`);
 });

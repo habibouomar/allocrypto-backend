@@ -6,6 +6,7 @@ module.exports.tweetPost = (req,res,next)=>{
         createdAt:body.createdAt,
         likes:body.likes,
         comments:body.comments,
+        ownerID: body.ownerID,
         text:body.text
     }).then(result=>{
         res.json({postId:result._id})
@@ -25,7 +26,9 @@ module.exports.tweetPut = (req,res,next)=>{
 
 
 module.exports.tweetGet = (req,res,next)=>{
-    PostModel.find({}).sort({createdAt:-1}).exec()
+    PostModel.find({}).sort({createdAt:-1})
+    .populate('ownerID','userName')
+    .exec()
     .then(result=>{
         console.log(result)
         res.json({result})

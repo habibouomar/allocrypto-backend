@@ -4,7 +4,9 @@ const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema({
   createdAt: Date,
-  OwnerID: String,
+  ownerID: {type:mongoose.Types.ObjectId,
+            ref:'user'
+  },
   likes: [String],
   text: String,
   postID:String

@@ -10,9 +10,9 @@ const commentRouter = require("./Router/comment.router");
 const cryptoRouter = require("./Router/crypto.router");
 const CommentsModel = require("./models/CommentsModel");
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
 app.use(express.static("public"));
 
 

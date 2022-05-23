@@ -19,7 +19,6 @@ app.use(express.static("public"));
 app.use("/post", postRouter);
 app.use("/user", userRouter);
 app.use("/comment", commentRouter);
-// app.use('/get', commentRouter)
 app.use("/crypto", cryptoRouter);
 
 const PORT = 3002 || process.env.PORT;

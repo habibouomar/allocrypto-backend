@@ -1,3 +1,5 @@
+const { default: mongoose } = require("mongoose")
+const { populate } = require("../models/PostModel")
 const PostModel = require("../models/PostModel")
 
 module.exports.tweetPost = (req,res,next)=>{
@@ -14,14 +16,25 @@ module.exports.tweetPost = (req,res,next)=>{
     })
     console.log(PostModel)
 }
+
+module.exports.tweetLike = (req,res,next)=>{
+    const body = req.body
+    res.json(body)
+    console.log(body)
+}
+
 module.exports.tweetDelete = (req,res,next)=>{
     PostModel.deleteOne({likes:[555]}).then(result=>console.log(result))
 }
 
 module.exports.tweetPut = (req,res,next)=>{
     const body = req.body;
-    PostModel.updateOne({_id:body.postID},{likes:body.OwnerID},{upsert:true})
-    .then(result=>console.log(result))
+    console.log(body)
+    PostModel.updateOne({_id:body.filterId},{$push : {likes: body.likerId}},{upsert:true})
+    .then(result=>{
+        res.json(result)
+        console.log(result)
+    })
 }
 
 

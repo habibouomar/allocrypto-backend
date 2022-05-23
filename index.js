@@ -8,6 +8,7 @@ const postRouter = require("./Router/post.router");
 const userRouter = require("./Router/user.router");
 const commentRouter = require("./Router/comment.router");
 const cryptoRouter = require("./Router/crypto.router");
+const CommentsModel = require("./models/CommentsModel");
 
 app.use(cors());
 app.use(express.json());
@@ -18,6 +19,7 @@ app.use(express.static("public"));
 app.use("/post", postRouter);
 app.use("/user", userRouter);
 app.use("/comment", commentRouter);
+// app.use('/get', commentRouter)
 app.use("/crypto", cryptoRouter);
 
 const PORT = 3002 || process.env.PORT;
@@ -25,7 +27,6 @@ const PORT = 3002 || process.env.PORT;
 app.get("/", (req, res) => {
   res.send("WELCOME TO THE GOULAG");
 });
-
 
 app.listen(PORT, () => {
   console.log(`server satarted in PORT ${PORT}`);

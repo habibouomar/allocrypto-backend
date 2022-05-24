@@ -6,8 +6,14 @@ const userSchema = new mongoose.Schema(
     userName: String,
     aboutMe: String,
     picture: String,
-    likesGlobal: [String],
-    commentsGlobal: [String]
+    likesGlobal: {
+      type: Number,
+      default: 0
+    },
+    commentsGlobal: {
+      type: Number,
+      default: 0
+    }
   },
   {
     timestamps: true,

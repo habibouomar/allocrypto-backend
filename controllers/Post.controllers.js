@@ -1,18 +1,19 @@
 const { default: mongoose } = require("mongoose")
 const { populate } = require("../models/PostModel")
 const PostModel = require("../models/PostModel")
+const UserModel = require("../models/UserModel")
 
 module.exports.tweetPost = (req, res, next) => {
     const body = req.body
     PostModel.create({
-        createdAt:body.createdAt,
-        likes:body.likes,
-        comments:body.comments,
+        createdAt: body.createdAt,
+        likes: body.likes,
+        comments: body.comments,
         ownerID: body.ownerID,
-        text:body.text
-    }).then(result=>{
-        res.json({postId:result._id})
-        console.log(result._id,'JEJEJE')
+        text: body.text
+    }).then(result => {
+        res.json({ postId: result._id })
+        console.log(result._id, 'JEJEJE')
     })
     console.log(PostModel)
 }
@@ -34,26 +35,37 @@ module.exports.tweetPut = (req, res, next) => {
     PostModel.find({ likes: { $in: id }, _id: body.filterId })
         .exec()
         .then(result => {
-            console.log("KKKKKKKKKKKKKKKKKKKKKKKK", result.length);
+
             if (result.length) {
                 res.json({ exists: true })
-                PostModel.updateOne({_id:body.filterId}, {$pull:{likes:id}})
-                .then(response=>{
-                    console.log("removed Response",response)
-                    // res.json({removed:true})
-                })
+                PostModel.updateOne({ _id: body.filterId }, { $pull: { likes: id } })
+                    .then(response => {
+                        console.log("removed Response", response)
+                    })
+                UserModel.findByIdAndUpdate(body.likerId, { $inc: { likesGlobal: -1 } })
+                    .then(reponse => {
+                        console.log("substract like count", reponse)
+                    }).catch(error => {
+                        console.log(error);
+                    })
+
             } else {
                 console.log('in else', result);
+
                 PostModel.updateOne({ _id: body.filterId }, { $push: { likes: id } }, { upsert: true })
                     .then(response => {
-                        res.json({exists:false})
+                        res.json({ exists: false })
                         console.log(response)
                     })
+                UserModel.findByIdAndUpdate(body.likerId, { $inc: { likesGlobal: 1 } })
+                    .then(reponse => {
+                        console.log("add like count", reponse)
+                    }).catch(error => {
+                        console.log(error);
+                    })
             }
-            // console.log(result)
         })
 }
-
 
 module.exports.tweetGet = (req, res, next) => {
     PostModel.find({})

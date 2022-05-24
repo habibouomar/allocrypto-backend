@@ -1,6 +1,5 @@
 const UserModel = require("../models/UserModel");
 
-
 module.exports.userPost = (req,res,next)=>{
     const body = req.body;
     UserModel.findOne({userName:body.userName})
@@ -13,6 +12,8 @@ module.exports.userPost = (req,res,next)=>{
                 userName:body.userName,
                 aboutMe:body.aboutMe,
                 picture:body.picture,
+                likesGlobal:body.likes,
+                commentsGoblal:body.comments,
             }).then(result=>{
                 res.json({result})
                 console.log(result)

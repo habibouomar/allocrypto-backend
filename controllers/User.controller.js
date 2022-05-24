@@ -53,3 +53,14 @@ module.exports.userGet = (req, res, next) => {
       }
     });
 };
+
+module.exports.userGetTopLikes = (req,res,next)=>{
+ 
+  UserModel.find()
+  .sort({likesGlobal: -1})
+  .exec()
+  .then(result=>{
+    res.json(result)
+    console.log("backend",result)
+  })
+};

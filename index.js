@@ -50,16 +50,6 @@ app.get("/post/:id", (req, res, next) => {
   })
 })
 
-app.get("/user/toplikes", (req,res,next)=>{
- 
-  UserModel.find()
-  .sort({likesGlobal: -1})
-  .exec()
-  .then(result=>{
-    res.json(result)
-    console.log(result)
-  })
-})
 
 app.listen(PORT, () => {
   console.log(`server satarted in PORT ${PORT}`);

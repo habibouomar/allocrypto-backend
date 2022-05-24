@@ -9,7 +9,8 @@ const userRouter = require("./Router/user.router");
 const commentRouter = require("./Router/comment.router");
 const cryptoRouter = require("./Router/crypto.router");
 const CommentsModel = require("./models/CommentsModel");
-const PostModel = require("./models/PostModel");
+const PostModel = require('./models/PostModel');
+const UserModel = require('./models/UserModel');
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -40,16 +41,26 @@ app.get("/comment/:id", (req, res, next) => {
 
 app.get("/post/:id", (req, res, next) => {
   const body = req.params;
-  // console.log(body)
-  PostModel.find({ _id: body.id })
-    .exec()
-    .then((result) => {
-      res.json(result);
-      console.log(result);
-    });
-});
+ 
+  PostModel.find({_id:body.id})
+  .exec()
+  .then(result=>{
+    res.json(result)
+    console.log(result)
+  })
+})
 
-// Post
+app.get("/user/toplikes", (req,res,next)=>{
+ 
+  UserModel.find()
+  .sort({likesGlobal: -1})
+  .exec()
+  .then(result=>{
+    res.json(result)
+    console.log(result)
+  })
+})
+
 app.listen(PORT, () => {
   console.log(`server satarted in PORT ${PORT}`);
 });

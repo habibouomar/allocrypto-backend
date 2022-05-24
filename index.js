@@ -19,7 +19,6 @@ app.use(express.static("public"));
 app.use("/post", postRouter);
 app.use("/user", userRouter);
 app.use("/comment", commentRouter);
-// app.use('/get', commentRouter)
 app.use("/crypto", cryptoRouter);
 
 const PORT = 3002 || process.env.PORT;
@@ -28,6 +27,7 @@ app.get("/", (req, res) => {
   res.send("WELCOME TO THE GOULAG");
 });
 
+<<<<<<< HEAD
 app.get("/comment/:id", (req,res,next)=>{
   const body = req.params;
   // console.log(body)
@@ -53,6 +53,8 @@ app.get("/post/:id", (req,res,next)=>{
 
 
 // Post
+=======
+>>>>>>> ee80553dc429e196c1cc9ae3c9482e8da29ac830
 app.listen(PORT, () => {
   console.log(`server satarted in PORT ${PORT}`);
 });

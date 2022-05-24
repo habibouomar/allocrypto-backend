@@ -25,6 +25,19 @@ module.exports.commentPut = (req,res,next)=>{
 }
 
 module.exports.commentGet = (req,res,next)=>{
-    CommentsModel.find({}).exec()
-    .then(result=>console.log(result))
+    CommentsModel.find({}).populate('ownerID').exec()
+    .then(result=>res.json(result))
 }
+
+module.exports.commentGetById = (req,res,next) =>{
+    const body = req.params;
+    CommentsModel.find({postID:body.id})
+    .populate('ownerID')
+    .sort({createdAt:-1})
+    .exec()
+    .then(result=>{
+      res.json(result)
+      console.log(result)
+    })
+  }
+  

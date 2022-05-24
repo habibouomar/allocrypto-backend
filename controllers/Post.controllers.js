@@ -5,17 +5,14 @@ const PostModel = require("../models/PostModel")
 module.exports.tweetPost = (req, res, next) => {
     const body = req.body
     PostModel.create({
-        createdAt: body.createdAt,
-        likes: body.likes,
-        comments: {
-            type: mongoose.Types.ObjectId,
-            ref: 'comments'
-        },
+        createdAt:body.createdAt,
+        likes:body.likes,
+        comments:body.comments,
         ownerID: body.ownerID,
-        text: body.text
-    }).then(result => {
-        res.json({ postId: result._id })
-        console.log(result._id, 'JEJEJE')
+        text:body.text
+    }).then(result=>{
+        res.json({postId:result._id})
+        console.log(result._id,'JEJEJE')
     })
     console.log(PostModel)
 }

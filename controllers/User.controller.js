@@ -12,7 +12,7 @@ module.exports.userPost = (req,res,next)=>{
             UserModel.create({
                 userName:body.userName,
                 aboutMe:body.aboutMe,
-                picture:body.picture
+                picture:body.picture,
             }).then(result=>{
                 res.json({result})
                 console.log(result)

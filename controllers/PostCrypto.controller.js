@@ -1,7 +1,5 @@
 const CrytpoModel = require('../models/PostCryptoModel');
 
-
-
 module.exports.cryptoPost = (req,res,next)=>{
     const body = req.body
     CrytpoModel.create({

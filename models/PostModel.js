@@ -10,7 +10,8 @@ const postSchema = new mongoose.Schema({
   },
   likes: [String],
   text: String,
-  postID:String
+  postID:String,
+  commentCount:Number
   },
   {
     timestamps:true

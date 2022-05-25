@@ -31,7 +31,7 @@ module.exports.tweetDelete = (req, res, next) => {
 module.exports.tweetPut = (req, res, next) => {
     const body = req.body;
     const id = body.likerId;
-    console.log(body)
+
     PostModel.find({ likes: { $in: id }, _id: body.filterId })
         .exec()
         .then(result => {
@@ -42,7 +42,7 @@ module.exports.tweetPut = (req, res, next) => {
                     .then(response => {
                         console.log("removed Response", response)
                     })
-                UserModel.findByIdAndUpdate(body.likerId, { $inc: { likesGlobal: -1 } })
+                UserModel.findByIdAndUpdate(body.ownerID, { $inc: { likesGlobal: -1 } })
                     .then(reponse => {
                         console.log("substract like count", reponse)
                     }).catch(error => {
@@ -57,7 +57,7 @@ module.exports.tweetPut = (req, res, next) => {
                         res.json({ exists: false })
                         console.log(response)
                     })
-                UserModel.findByIdAndUpdate(body.likerId, { $inc: { likesGlobal: 1 } })
+                UserModel.findByIdAndUpdate(body.ownerID, { $inc: { likesGlobal: 1 } })
                     .then(reponse => {
                         console.log("add like count", reponse)
                     }).catch(error => {
@@ -76,3 +76,15 @@ module.exports.tweetGet = (req, res, next) => {
             res.json({ result })
         })
 }
+
+module.exports.tweetProfilGet = (req,res,next)=>{
+    const body = req.params.user
+    PostModel.where('ownerID')
+    .equals(body)
+    .populate('ownerID')
+    .exec()
+    .then(result=>{
+      console.log(result)
+      res.json(result)
+    })
+  }

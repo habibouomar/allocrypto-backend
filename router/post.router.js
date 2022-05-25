@@ -4,6 +4,7 @@ router.post("/", postController.tweetPost);
 router.post("/like",postController.tweetLike)
 router.get("/", postController.tweetGet);
 router.put("/", postController.tweetPut);
+router.get("/profil/:user", postController.tweetProfilGet);
 router.delete("/", postController.tweetDelete);
 
 module.exports = router;

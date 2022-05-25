@@ -61,6 +61,16 @@ module.exports.userGetTopLikes = (req,res,next)=>{
   .exec()
   .then(result=>{
     res.json(result)
+  })
+};
+
+module.exports.userGetTopComments = (req,res,next)=>{
+ 
+  UserModel.find()
+  .sort({commentsGlobal: -1})
+  .exec()
+  .then(result=>{
+    res.json(result)
     console.log("backend",result)
   })
 };

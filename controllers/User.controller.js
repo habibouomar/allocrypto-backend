@@ -57,21 +57,19 @@ module.exports.userGet = (req, res, next) => {
 module.exports.userGetTopLikes = (req, res, next) => {
   UserModel.find()
 
-  .sort({likesGlobal: -1})
-  .exec()
-  .then(result=>{
-    res.json(result)
-  })
+    .sort({ likesGlobal: -1 })
+    .exec()
+    .then((result) => {
+      res.json(result);
+    });
 };
 
-module.exports.userGetTopComments = (req,res,next)=>{
- 
+module.exports.userGetTopComments = (req, res, next) => {
   UserModel.find()
-  .sort({commentsGlobal: -1})
-  .exec()
-  .then(result=>{
-    res.json(result)
-    console.log("backend",result)
-  })
+    .sort({ commentsGlobal: -1 })
+    .exec()
+    .then((result) => {
+      res.json(result);
+      console.log("backend", result);
+    });
 };
->>>>>>> 4ecf7c17a8c3ebfa6a7403423caf3eefa1f1c7fa

@@ -40,4 +40,15 @@ module.exports.commentGetById = (req,res,next) =>{
       console.log(result)
     })
   }
+
+module.exports.commentProfilGet = (req,res,next)=>{
+    const body = req.params.user
+    CommentsModel.where('ownerID')
+    .equals(body)
+    .exec()
+    .then(result=>{
+      console.log(result)
+      res.json(result)
+    })
+}
   

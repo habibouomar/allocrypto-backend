@@ -4,6 +4,7 @@ router.post("/", commentController.commentPost);
 router.get("/:id", commentController.commentGetById);
 router.get("/", commentController.commentGet);
 router.put("/", commentController.commentPost);
+router.get("/profil/:user", commentController.commentProfilGet);
 router.delete("/", commentController.commentDelete);
 
 module.exports = router;

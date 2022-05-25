@@ -1,5 +1,5 @@
 const CommentsModel = require('../models/CommentsModel');
-
+const PostModel = require('../models/PostModel')
 module.exports.commentPost = (req,res,next)=>{
     const body = req.body;
     CommentsModel.create(body).then(result=>{
@@ -45,10 +45,20 @@ module.exports.commentProfilGet = (req,res,next)=>{
     const body = req.params.user
     CommentsModel.where('ownerID')
     .equals(body)
+    .sort({createdAt:-1})
+    .populate('ownerID')
+    .populate({
+        path:'postID',
+        populate:{
+            path:'ownerID',
+            model:'user'
+        }
+    
+    })
     .exec()
     .then(result=>{
-      console.log(result)
+      console.log('OOOOOOOOOOOOOOOOOOOOOOOOOOOOO',result)
       res.json(result)
+   
     })
 }
-  

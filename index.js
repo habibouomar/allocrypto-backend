@@ -51,66 +51,6 @@ app.get("/post/:id", (req, res, next) => {
   })
 })
 
-
-
-
-// app.post('/share',(req,res,next)=>{
-//      const body = req.body;
-//      console.log(body)
-//      ShareModel.create(body)
-//      .then(result=>{
-//        console.log(result)
-//        res.json(body)
-
-//      })
-// })
-
-// app.get('/share',async (req,res,next)=>{
-//   const body = req.params.id
-//  await ShareModel.find({})
-//  .populate('postID')
-//  .populate('posterID')
-//   .exec()
-//   .then(result=>{
-//     console.log(result)
-//     res.send(result)
-//   })
-// })
-
-// app.get('/share/profil/:user',(req,res,next)=>{
-//   const body = req.params.user
-//   ShareModel.where('posterID')
-//   .equals(body)
-//   .exec()
-//   .then(result=>{
-//     console.log(result)
-//     res.json(result)
-//   })
-// })
-
-// app.get('/comment/profil/:user',(req,res,next)=>{
-//   const body = req.params.user
-//   CommentsModel.where('ownerID')
-//   .equals(body)
-//   .exec()
-//   .then(result=>{
-//     console.log(result)
-//     res.json(result)
-//   })
-// })
-
-// app.get('/post/profil/:user',(req,res,next)=>{
-//   const body = req.params.user
-//   PostModel.where('ownerID')
-//   .equals(body)
-//   .exec()
-//   .then(result=>{
-//     console.log(result)
-//     res.json(result)
-//   })
-// })
-
-
 // Post
 app.listen(PORT, () => {
   console.log(`server satarted in PORT ${PORT}`);

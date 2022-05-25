@@ -32,6 +32,15 @@ module.exports.shareProfilGet = (req,res,next)=>{
     const body = req.params.user
     ShareModel.where('posterID')
     .equals(body)
+    .populate('posterID')
+    .populate({
+      path:'postID',
+      populate:{
+          path:'ownerID',
+          model:'user'
+      }
+  
+  })
     .exec()
     .then(result=>{
       console.log(result)

@@ -81,6 +81,7 @@ module.exports.tweetProfilGet = (req,res,next)=>{
     const body = req.params.user
     PostModel.where('ownerID')
     .equals(body)
+    .populate('ownerID')
     .exec()
     .then(result=>{
       console.log(result)

@@ -3,10 +3,13 @@ const mongoose = require("mongoose");
 
 const postCryptSchema = mongoose.Schema(
   {
-  
+    ownerID:{
+      type:mongoose.Types.ObjectId,
+      ref:"user"
+    },
     text: String,
     likes: [Number],
-    nameCryptoApi: String,
+    // nameCryptoApi: String,
     time: Date,
   },
   {

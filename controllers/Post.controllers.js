@@ -2,21 +2,72 @@ const { default: mongoose } = require("mongoose")
 const { populate } = require("../models/PostModel")
 const PostModel = require("../models/PostModel")
 const UserModel = require("../models/UserModel")
-
+const cryptos = [
+    ' Bitcoin',
+     'Ethereum',
+     'USD Coin',
+     'Tether',
+     'BNB',
+     'XRP',
+     'Cardano',
+     'Binance USD',
+     'Solana',
+     'Dogecoin',
+     'Polkadot',
+    ' Wrapped Bitcoin',
+     'TRON',
+     'Lido Staked Ether',
+     'Avalanche',
+     'Shiba Inu',
+     'Dai',
+     'LEO Token',
+     'Litecoin',
+     'Cronos',
+     'Polygon',
+     'FTX Token',
+     'NEAR Protocol',
+     'Monero',
+     'Bitcoin Cash',
+     'OKB',
+     'Stellar',
+     'Chainlink',
+     'Ethereum Classic',
+     'Cosmos Hub',
+     'Algorand',
+     'Flow',
+     'Uniswap',
+     'VeChain',
+     'ApeCoin',
+     'Hedera',
+     'Theta Fuel',
+     'Chain',
+     'Elrond',
+     'Internet Computer',
+     'Tezos',
+     'Filecoin',
+     'The Sandbox',
+     'Axie Infinity',
+     'KuCoin Token',
+     'Decentraland',
+     'Frax',
+     'cETH',
+     'Aave',
+     'DeFiChain']
 module.exports.tweetPost = (req, res, next) => {
     const body = req.body
-    PostModel.create({
-        createdAt: body.createdAt,
-        likes: body.likes,
-        comments: body.comments,
-        ownerID: body.ownerID,
-        text: body.text
-    }).then(result => {
-        res.json({ postId: result._id })
-        console.log(result._id, 'JEJEJE')
-    })
-    console.log(PostModel)
-}
+            PostModel.create({
+                createdAt: body.createdAt,
+                likes: body.likes,
+                comments: body.comments,
+                ownerID: body.ownerID,
+                text: body.text
+            }).then(result => {
+                res.json({ postId: result._id })
+                console.log(result._id, 'JEJEJE')
+            })
+            console.log(PostModel)
+      
+    }
 
 module.exports.tweetLike = (req, res, next) => {
     const body = req.body

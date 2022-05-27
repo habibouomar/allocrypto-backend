@@ -4,10 +4,11 @@ module.exports.cryptoPost = (req,res,next)=>{
     const body = req.body
     CrytpoModel.create({
         text:body.text,
-        likes:body.likes,
-        nameCryptoApi:body.nameCryptoApi,
-        time:body.time
-    }).then(result=>console.log(result))
+        ownerID:body.ownerID
+    }).then(result=>{
+        console.log("CRYPTO RESULT",result)
+        res.json(result)
+    })
 }
 
 module.exports.cryptoDelete = (req,res,next)=>{
@@ -21,6 +22,12 @@ module.exports.ceryptoPut = (req,res,next)=>{
 
 module.exports.cryptoGet = (req,res,next)=>{
     const body = req.body
-    CrytpoModel.find({}).exec()
-    .then(result=>console.log(result))
+    CrytpoModel.find({})
+    .sort({createdAt:-1})
+    .populate('ownerID')
+    .exec()
+    .then(result=>{
+        console.log(result)
+    res.json(result)
+    })
 }

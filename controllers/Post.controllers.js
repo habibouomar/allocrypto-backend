@@ -76,7 +76,12 @@ module.exports.tweetLike = (req, res, next) => {
 }
 
 module.exports.tweetDelete = (req, res, next) => {
-    PostModel.deleteOne({ likes: [555] }).then(result => console.log(result))
+    const body = req.body
+    PostModel.deleteOne({ _id:body.postID})
+    .then(result => {
+        console.log(result)
+        res.json({message:'Post deleted successfuly'})
+    })
 }
 
 module.exports.tweetPut = (req, res, next) => {
@@ -116,6 +121,15 @@ module.exports.tweetPut = (req, res, next) => {
                     })
             }
         })
+}
+
+module.exports.tweetEditPut = (req,res,next)=>{
+    const body = req.body;
+    PostModel.updateOne({_id:body.postID}, {$set:{text:body.text}})
+    .then(result=>{
+        res.json(result)
+        console.log(result)
+    })
 }
 
 module.exports.tweetGet = (req, res, next) => {

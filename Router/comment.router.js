@@ -3,7 +3,7 @@ const commentController = require('../controllers/Comment.controller')
 router.post("/", commentController.commentPost);
 router.get("/:id", commentController.commentGetById);
 router.get("/", commentController.commentGet);
-router.put("/", commentController.commentPost);
+router.put("/", commentController.commentPut);
 router.get("/profil/:user", commentController.commentProfilGet);
 router.delete("/", commentController.commentDelete);
 

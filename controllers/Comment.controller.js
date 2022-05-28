@@ -22,15 +22,19 @@ module.exports.commentPost = (req, res, next) => {
 
 module.exports.commentDelete = (req, res, next) => {
     const body = req.body;
-    CommentsModel.deleteOne({ createdAt: body.createdAt }).then(result => {
+    CommentsModel.deleteOne({ _id: body.id }).then(result => {
         console.log(result)
+        res.json({message:'cpmment deleted successfuly'})
     })
 }
 
 module.exports.commentPut = (req, res, next) => {
-    const body = req.body
-    CommentsModel.updateOne({ text: body.text }, { text: 'Dogecoin to Win' }, { upsert: true })
-        .then(result => console.log(result))
+  const body = req.body
+    CommentsModel.updateOne({ _id: body.id }, { text: body.text })
+        .then(result => {
+            console.log(result)
+            res.json({message:'comment modified'})
+        })
 }
 
 module.exports.commentGet = (req, res, next) => {

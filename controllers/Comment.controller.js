@@ -10,21 +10,28 @@ module.exports.commentPost = (req, res, next) => {
         console.log("nouveau comment a linstant", result)
     })
 
-    PostModel.findById(body.postID)
+    PostModel.findByIdAndUpdate(body.postID, {$inc: {commentCount:1}})
         .exec()
         .then(infoPost =>  UserModel.findByIdAndUpdate(infoPost.ownerID, { $inc: { commentsGlobal: 1 } })
         .then(reponse => {
             console.log("add comment count", reponse)
         }).catch(error => {
             console.log(error);
-        }))     
+        }))    
+
 }
 
 module.exports.commentDelete = (req, res, next) => {
     const body = req.body;
+    console.log("BODYYYYYY",body)
     CommentsModel.deleteOne({ _id: body.id }).then(result => {
         console.log(result)
-        res.json({message:'cpmment deleted successfuly'})
+        res.json({message:'comment deleted successfuly'})
+        PostModel.findByIdAndUpdate(body.postID,{$inc:{commentCount:-1}})
+        .exec()
+        .then(response=>{
+            console.log("RESPSOSOSOSOSOSOSOSOSOSOSOSOSSOSOSOSOSOSOSOSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",response)
+        })
     })
 }
 

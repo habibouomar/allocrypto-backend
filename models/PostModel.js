@@ -11,7 +11,7 @@ const postSchema = new mongoose.Schema({
   likes: [String],
   text: String,
   postID:String,
-  commentCount:Number
+  commentCount:Number,//to add one each time we add a comment
   },
   {
     timestamps:true

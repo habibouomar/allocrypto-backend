@@ -47,3 +47,11 @@ module.exports.shareProfilGet = (req,res,next)=>{
       res.json(result)
     })
   }
+
+  module.exports.shareDelete = (req,res,next)=>{
+    const body = req.body;
+    ShareModel.findByIdAndDelete(body.id)
+    .then(result=>{
+      console.log(result)
+    })
+  }
